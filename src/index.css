@@ -48,6 +48,10 @@
   border: 2px solid purple;
 }
 
+.buttonContainerTop ul button {
+  border: 2px solid rebeccapurple;
+}
+
 .buttonContainerLeft{
   display: flex;
   flex-direction: column;
