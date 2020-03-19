@@ -1,13 +1,96 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.mainContainer{
+  display: flex;
+ flex-direction: column;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.midSection{
+  display: flex;
+  justify-content:space-around;
+  /* background-color: lightseagreen;
+  */
+  /* color: cornflowerblue; */
+  background-image: linear-gradient(cornflowerblue, lightskyblue);
+  height : 1000px;
+}
+
+.content {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  /* min-width: 800px;
+  min-height: 800px; */
+  /* border: 2px solid rebeccapurple; */
+}
+
+
+.bottom{
+  display: flex;
+  /* flex-direction: row; */
+  justify-content: space-evenly;
+  min-width: 200px;
+}
+
+
+.staticImageComp{
+  max-width: 1000px;
+  max-height: 1000px;
+}
+
+.buttonContainerTop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-image: linear-gradient(plum, lightskyblue); */
+  background-image: linear-gradient(blueviolet, lightskyblue);
+
+
+  border: 2px solid purple;
+}
+
+.buttonContainerLeft{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-image: linear-gradient(blueviolet, lightskyblue);
+
+  max-width: 280px;
+}
+
+.buttonContainerRight{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-image: linear-gradient(blueviolet, lightskyblue);
+
+  /* background-color: lightskyblue; */
+  /* background-color: blueviolet; */
+  max-width: 280px;
+}
+
+
+
+.buttons button{
+  border-radius: 5px;
+  padding: 5px;
+  margin: 2px;
+  text-align: center;
+  font-size: larger;
+  color: black;
+  text-shadow: -1px -1px 0 white,  -1px -1px 0 white;
+}
+
+.bigButtons {
+  border-radius: 10px;
+  padding: 15px;
+  margin: 15px;
+  text-align: center;
+  font-size: larger;
+}
+
+.navvy{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: beige;
 }
