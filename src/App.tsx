@@ -291,6 +291,7 @@ interface buttonArgs {
 
 function App(this: any) {
   const [currentImageIndex, setCurrentImageIndex] = useState<null | number>(null);
+  const [goldenArr, setGoldenArr] = useState(["prettyAnvil"])
   const [currentOption, setCurrentOption] = useState("");
 
   function nextImage() {
@@ -341,7 +342,24 @@ function App(this: any) {
               idxReference = idx + leftChunkDivider + 1;
             }
             //currentOption !== str ? setCurrentOption(str) : setCurrentOption("")
-            return <button style={{ backgroundColor: purples[idx % purples.length] }} onClick={() => setCurrentImageIndex(idxReference)}>{str}</button>
+            if (goldenArr.includes(str)) {
+              return <button style={{ backgroundColor: "gold" }} onClick={() => {
+                setCurrentImageIndex(idxReference);
+                let copyOfGold = goldenArr.filter(thing => thing !== str);
+                setGoldenArr(copyOfGold);
+              }
+              }
+              >{str}</button>
+            }
+            else if (!goldenArr.includes(str)) {
+              return <button style={{ backgroundColor: purples[idx % purples.length] }} onClick={() => {
+                setCurrentImageIndex(idxReference);
+                let copyOfGold = [...goldenArr, str];
+                setGoldenArr(copyOfGold);
+              }
+              }>{str}</button>
+            }
+
           })}
 
           {/* bottom */}
