@@ -290,27 +290,27 @@ interface buttonArgs {
 }
 
 function App(this: any) {
-  let [currentImageIndex, setCurrentImageIndex] = useState<null | number>(null);
-  let [currentOption, setCurrentOption] = useState("");
+  const [currentImageIndex, setCurrentImageIndex] = useState<null | number>(null);
+  const [currentOption, setCurrentOption] = useState("");
 
   function nextImage() {
-    if (currentImageIndex && currentImageIndex < arrOfVars.length) {
-      setCurrentImageIndex(++currentImageIndex);
+    if (typeof currentImageIndex === "number" && currentImageIndex < arrOfVars.length - 1) {
+      const nextIndex = currentImageIndex + 1;
+      setCurrentImageIndex(nextIndex);
     }
-    else if (currentImageIndex && currentImageIndex > arrOfVars.length) {
-      setCurrentImageIndex(0);
-    }
+    // else if (currentImageIndex && currentImageIndex === arrOfVars.length - 1) {
+    //   setCurrentImageIndex(0);
+    // }
     else {
-      currentImageIndex = 0;
-      setCurrentImageIndex(++currentImageIndex);
+      setCurrentImageIndex(0);
     }
   }
   function prevImage() {
-    if (currentImageIndex) {
-      setCurrentImageIndex(--currentImageIndex);
+    if (typeof currentImageIndex === "number" && currentImageIndex > 0) {
+      let prevIdx = currentImageIndex - 1;
+      setCurrentImageIndex(prevIdx);
     } else {
-      currentImageIndex = arrOfVars.length - 1;
-      setCurrentImageIndex(--currentImageIndex);
+      setCurrentImageIndex(arrOfVars.length - 1);
     }
   }
 
