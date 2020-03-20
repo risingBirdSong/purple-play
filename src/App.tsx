@@ -302,8 +302,13 @@ function App(this: any) {
   }
 
   const [currentImageIndex, setCurrentImageIndex] = useState<null | number>(null);
-  const [goldenArr, setGoldenArr] = useState(getFromLocalStorage());
+  const [goldenArr, setGoldenArr] = useState<string[]>([]);
+  const [alterGolden, setAlterGolden] = useState<string[]>([]);
   const [currentOption, setCurrentOption] = useState("");
+
+  useEffect(() => {
+    setGoldenArr(alterGolden);
+  }, [alterGolden])
 
   function nextImage() {
     if (typeof currentImageIndex === "number" && currentImageIndex < arrOfVars.length - 1) {
@@ -357,7 +362,6 @@ function App(this: any) {
                 setCurrentImageIndex(idxReference);
                 const copyOfGold = goldenArr.filter(thing => thing !== str);
                 setGoldenArr(copyOfGold);
-                console.log("golden arr", goldenArr);
               }
               }
               >{str}</button>
@@ -366,10 +370,11 @@ function App(this: any) {
               //here
               return <button style={{ backgroundColor: purples[idx % purples.length] }} onClick={() => {
                 setCurrentImageIndex(idxReference);
-                const copyOfGold = [str, ...goldenArr];
-                console.log("copy of gold", copyOfGold);
-                setGoldenArr(copyOfGold);
-                console.log("golden arr", goldenArr);
+                const copyOfGold = goldenArr.map(x => x);
+                const append = [...copyOfGold, str];
+                setAlterGolden(append);
+                console.log(goldenArr);
+
               }
               }>{str}</button>
             }
