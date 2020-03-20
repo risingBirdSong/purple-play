@@ -289,8 +289,20 @@ interface buttonArgs {
 }
 
 function App(this: any) {
+
+  function getFromLocalStorage() {
+    let fromStorage: string[] = [];
+    for (let thing in window.localStorage) {
+      if (thing.slice(0, 4) === "save") {
+        let received = window.localStorage.getItem(thing) ?? "";
+        fromStorage = [...fromStorage, received]
+      }
+    }
+    return fromStorage;
+  }
+
   const [currentImageIndex, setCurrentImageIndex] = useState<null | number>(null);
-  const [goldenArr, setGoldenArr] = useState(["prettyAnvil"])
+  const [goldenArr, setGoldenArr] = useState(getFromLocalStorage());
   const [currentOption, setCurrentOption] = useState("");
 
   function nextImage() {
@@ -315,7 +327,6 @@ function App(this: any) {
   }
 
   const simpleHandler = (e: KeyboardEvent) => {
-    console.log("e", e)
     if (e.key === "ArrowRight") {
       nextImage();
     }
@@ -344,17 +355,21 @@ function App(this: any) {
             if (goldenArr.includes(str)) {
               return <button style={{ backgroundColor: "gold" }} onClick={() => {
                 setCurrentImageIndex(idxReference);
-                let copyOfGold = goldenArr.filter(thing => thing !== str);
+                const copyOfGold = goldenArr.filter(thing => thing !== str);
                 setGoldenArr(copyOfGold);
+                console.log("golden arr", goldenArr);
               }
               }
               >{str}</button>
             }
             else if (!goldenArr.includes(str)) {
+              //here
               return <button style={{ backgroundColor: purples[idx % purples.length] }} onClick={() => {
                 setCurrentImageIndex(idxReference);
-                let copyOfGold = [...goldenArr, str];
+                const copyOfGold = [str, ...goldenArr];
+                console.log("copy of gold", copyOfGold);
                 setGoldenArr(copyOfGold);
+                console.log("golden arr", goldenArr);
               }
               }>{str}</button>
             }
@@ -404,7 +419,14 @@ function App(this: any) {
             }} className="bigButtons">clear</button>
           </div>
           <div className="favesContainer">
-            <button onClick={() => { console.log("your faves") }}> faves</button>
+            <button className="bigButtons" onClick={() => {
+              let idx = 0
+              for (let goldie of goldenArr) {
+                window.localStorage.setItem(`save-${idx}`, goldie);
+                idx++;
+              }
+
+            }}> remember</button>
           </div>
         </div>
         {buttonManufacturer({ clsNm: "buttonContainerRight", buttonArr: rightOptionStrings })}
