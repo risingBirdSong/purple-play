@@ -425,10 +425,19 @@ function App(this: any) {
           </div>
           <div className="favesContainer">
             <button className="bigButtons" onClick={() => {
-              let idx = 0
+
+              let j = 0;
+              for (let remembered in window.localStorage) {
+                window.localStorage.removeItem(`save-${j}`)
+                j++
+              }
+
+
+
+              let i = 0
               for (let goldie of goldenArr) {
-                window.localStorage.setItem(`save-${idx}`, goldie);
-                idx++;
+                window.localStorage.setItem(`save-${i}`, goldie);
+                i++;
               }
 
             }}> remember</button>
