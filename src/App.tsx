@@ -413,17 +413,17 @@ function App(this: any) {
         <div className="content">
           {/* {selector(currentOption)} */}
           {refactoredSelector(currentImageIndex)}
-          <div className="bottom"> <button onClick={() => {
-            nextImage()
-          }} className="bigButtons">next</button>
+          <div className="bottom">
             <button onClick={() => {
               prevImage();
             }} className="bigButtons">prev</button>
             <button onClick={() => {
+              nextImage()
+            }} className="bigButtons">next</button>
+            <button onClick={() => {
               setCurrentImageIndex(null);
             }} className="bigButtons">clear</button>
-          </div>
-          <div className="favesContainer">
+
             <button className="bigButtons" onClick={() => {
 
               let j = 0;
@@ -442,6 +442,7 @@ function App(this: any) {
 
             }}> remember</button>
           </div>
+
         </div>
         {buttonManufacturer({ clsNm: "buttonContainerRight", buttonArr: rightOptionStrings })}
 
