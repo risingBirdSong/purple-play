@@ -276,13 +276,12 @@ let lengthTracker = Object.keys(choiceEnum);
 
 let allOptionStrings = lengthTracker.map(x => x);
 
-let topChunkDivider = 20;
-let leftChunkDivider = 50;
-let rightChunkDivider = 50;
+let topChunkDivider = 35;
+let leftChunkDivider = 58;
 
 let topOptionStrings = allOptionStrings.filter((str, idx) => idx <= topChunkDivider);
-let leftOptionStrings = allOptionStrings.filter((str, idx) => idx > topChunkDivider && idx <= rightChunkDivider);
-let rightOptionStrings = allOptionStrings.filter((str, idx) => idx > rightChunkDivider);
+let leftOptionStrings = allOptionStrings.filter((str, idx) => idx > topChunkDivider && idx <= leftChunkDivider);
+let rightOptionStrings = allOptionStrings.filter((str, idx) => idx > leftChunkDivider);
 
 interface buttonArgs {
   clsNm: "buttonContainerTop" | "buttonContainerLeft" | "buttonContainerRight";
